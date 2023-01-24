@@ -1,8 +1,14 @@
-body {
+/* body {
     display: flex;
     flex-direction: column;
     padding: 1em;
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    color: darkcyan;
 }
 
 .keyboard {
@@ -35,5 +41,156 @@ body {
 .key > svg {
     width: 1.75em;
     height: 1.75em;
+}
+
+.guess-boxes {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 1;
+    grid-template-columns: repeat(5, 4em);
+    grid-template-rows: repeat(6, 4em);
+    gap: .25em;
+    margin-bottom: 1em;  
+}
+
+.box {
+    background-color: lightblue;
+    border: .05em solid grey;
+    color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: transform 250ms linear;
+}
+
+.box[data-state="active"] {
+    border-color: darkblue;
+}
+
+.box[data-state="wrong"] {
+    border-color: none;
+    background-color: darkgrey;
+}
+
+.box[data-state="wrong-position"] {
+    border-color: none;
+    background-color: rgb(219, 219, 21);
+}
+
+.box[data-state="correct"] {
+    border-color: none;
+    background-color: green;
+}
+
+/* .box.shake {
+    animation: shake 250ms ease-in-out;
+} 
+
+.box.flip {
+    transform: rotateX(90deg);
+}
+
+.alert-container {
+    position: fixed;
+    top: 10vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alert {
+    pointer-events: none;
+    background-color: beige;
+    padding: .75em;
+    border-radius: .25em;
+    opacity: 1;
+    transition: opacity 500ms ease-in-out;
+    margin-bottom: .5em;
+}
+
+.alert:last-child {
+    margin-bottom: 0;
+}
+.alert.hide {
+    opacity: 0;
+}
+ */
+
+* {
+    padding: 0;
+    margin: 2px;
+    font-family: Geneva;
+    color: gray;
+    font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+    background-color: rgb(191, 191, 171);
+}
+
+h1 {
+    text-align: center;
+    color: rgb(39, 39, 111);
+    font-size: 2.5rem;
+    font-weight: bolder;
+ 
+}
+
+#guessing-tiles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.letter-row {
+    display: flex;
+}
+
+.letter-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid bisque;
+    height: 3rem;
+    width: 3rem;
+    margin: .15rem;
+    background-color: antiquewhite;
+    border-radius: .15rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.keyboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+.keyboard-container div {
+    display: flex;
+}
+
+.row-2 {
+    margin: 0.15rem 0;
+}
+
+.key, .key-large {
+    padding: 1rem;
+    margin: 0.15rem 0.15rem;
+    border: lightgray;
+    border-radius: .25rem;
+    background-color: lightblue;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
