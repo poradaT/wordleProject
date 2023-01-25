@@ -8,36 +8,34 @@ console.log(correctAnswer)
 
 let currentGuess = "";
 let nextLetter = 0;
-
-const delKey = document.querySelector('#delete')
+let tile = document.querySelectorAll(".letter-column")
 
 const keys = document.querySelectorAll('.key')
-keys.forEach(function(key) {
+keys.forEach(function(key) { 
     key.addEventListener('click', function() {
-        let tile = document.querySelectorAll(".letter-column")
+  
         if (nextLetter >= 5 ) {
         return
-        } 
-        if (key.classList.contains("delete")) {
-            delKey.addEventListener('click', function() {
-                tile = tile[nextLetter -1]
-                tile.innerHTML = ""
-                currentGuess = currentGuess.substring(0, currentGuess.length-1)     
-                nextLetter -= 1              
-                console.log(currentGuess)
-                })    
-        }
-        
+        }    
         else { 
         tile[nextLetter].innerHTML = key.innerHTML
         currentGuess += key.innerHTML
         nextLetter += 1 
         console.log(currentGuess)
         }
+        console.log(nextLetter)
     }) 
 }) 
 
-
+const delKey = document.querySelector("#delete") 
+delKey.addEventListener('click', function() { 
+    if (nextLetter >= 1) {
+        nextLetter -= 1}      
+        tile[nextLetter].innerHTML = ""
+        currentGuess = currentGuess.substring(0, currentGuess.length-1)     
+        console.log(nextLetter)            
+        console.log(currentGuess)
+        })    
 
 const enterKey = document.querySelector('#enter')
 enterKey.addEventListener('click', function() {
@@ -49,6 +47,16 @@ enterKey.addEventListener('click', function() {
         window.location.reload()
         } 
     })
+
+
+
+// let theWord = correctAnswer
+// let arrayOfCorrectAnswer = [] 
+
+//     for (let letter of theWord) {
+//         console.log(letter)
+        
+//     }
 
 
 
