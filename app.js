@@ -4,22 +4,20 @@ let correctAnswer = validWords[Math.floor(Math.random() * validWords.length)];
 let arrayOfCorrectAnswer = correctAnswer.split("")
 console.log(arrayOfCorrectAnswer)
 
-//const guessChances = 6;
-//let guessRemaining = guessChances;
-
+let guessRemaining = 6
 let currentGuess = "";
-
 let nextLetter = 0;
 let tile = document.querySelectorAll(".letter-column")
+let row = document.querySelectorAll(".letter-row")[6-guessRemaining]
 
 const keys = document.querySelectorAll('.key')
 keys.forEach(function(key) { 
     key.addEventListener('click', function() { 
         if (nextLetter >= 5 ) {
         return
-        }    
-        else { 
-        tile[nextLetter].innerHTML = key.innerHTML
+        } else { 
+        let row = document.querySelectorAll(".letter-row")[6-guessRemaining]
+        row.children[nextLetter].innerHTML = key.innerHTML
         currentGuess += key.innerHTML
         nextLetter += 1 
         console.log(currentGuess)
@@ -29,45 +27,54 @@ keys.forEach(function(key) {
 
 const delKey = document.querySelector("#delete") 
 delKey.addEventListener('click', function() { 
+    let row = document.querySelectorAll(".letter-row")[6-guessRemaining]
     if (nextLetter >= 1) {
         nextLetter -= 1
         }      
-    tile[nextLetter].innerHTML = ""
+    row.children[nextLetter].innerHTML = ""
     currentGuess = currentGuess.substring(0, currentGuess.length-1)  
     console.log(currentGuess)   
 })    
 
 const enterKey = document.querySelector('#enter')
 enterKey.addEventListener('click', function() {
-   
     let arrayOfCurrentGuess = currentGuess.split("");
     console.log(arrayOfCurrentGuess)
 
     if (currentGuess === correctAnswer) {
-        alert('YOU WIN!')
+        alert('Congrats! YOU WIN!')
         window.history.go(1)
+        guessRemaining -= 1    
     } else if (arrayOfCurrentGuess.length <5) {
         alert("Not enough letters!")
         window.history.go(1)
     } else if (!validWords.includes(currentGuess)) {
-        alert(`C'mon, that's not a word`)
+        alert(`C'mon, that's not a word.`)
         window.history.go(1)
+    } else if (guessRemaining === 1){
+        alert(`Yo!! the correct answer is ${correctAnswer}!`)
+        window.history.go(1)
+        guessRemaining -= 1
     } else {
-        alert(`Try again! The correct answer is ${correctAnswer}`)
+        alert('Try again!')
         window.history.go(1)
+        currentGuess = ""
+        nextLetter = 0
+        guessRemaining -= 1
+        console.log(guessRemaining)
     }
   
     for (let i=0; i<5; i++) {
         let letter = arrayOfCurrentGuess[i]
-        let letterPosition = arrayOfCorrectAnswer.indexOf(arrayOfCurrentGuess[i])
-        console.log(letterPosition)
+        let letterPosition = arrayOfCorrectAnswer.indexOf(arrayOfCurrentGuess[i])   
+        let row = document.querySelectorAll(".letter-row")[5-guessRemaining]
 
         if (letterPosition === -1) {
-            tile[i].style.backgroundColor = 'red'
+            row.children[i].style.backgroundColor = 'red'
         } else if (arrayOfCurrentGuess[i] === arrayOfCorrectAnswer[i]) {
-            tile[i].style.backgroundColor = 'green'
+            row.children[i].style.backgroundColor = 'green'
         } else {
-            tile[i].style.backgroundColor = 'yellow'
+            row.children[i].style.backgroundColor = 'yellow'
             ///However, if the user put two of the same letters such as 'A'and 'A', 
             ///the tile of the second 'A' turns yellow anyway 
             ///eventhough there is only one 'A' in the correct answer

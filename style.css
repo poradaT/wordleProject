@@ -1,6 +1,6 @@
 * {
     padding: 0;
-    margin: 2px;
+    margin: 2px 20px;
     font-family: Geneva;
     color: rgb(201, 198, 198);
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
@@ -12,7 +12,7 @@ h1 {
     color: rgb(39, 39, 111);
     font-size: 2.5rem;
     font-weight: bolder;
- 
+    border-bottom: 1px solid gray; 
 }
 
 #guessing-tiles {
@@ -67,4 +67,3 @@ h1 {
     cursor: pointer;
     text-transform: uppercase;
 }
-
