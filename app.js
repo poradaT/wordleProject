@@ -39,9 +39,24 @@ delKey.addEventListener('click', function() {
 
 const enterKey = document.querySelector('#enter')
 enterKey.addEventListener('click', function() {
+   
     let arrayOfCurrentGuess = currentGuess.split("");
     console.log(arrayOfCurrentGuess)
 
+    if (currentGuess === correctAnswer) {
+        alert('YOU WIN!')
+        window.history.go(-1)
+    } else if (arrayOfCurrentGuess.length <5) {
+        alert("Not enough letters!")
+        window.history.go(-1)
+    } else if (!validWords.includes(currentGuess)) {
+        alert(`C'mon, that's not a word`)
+        window.history.go(-1)
+    } else {
+        alert(`Try again! The correct answer is ${correctAnswer}`)
+        window.history.go(-1)
+    }
+  
     for (let i=0; i<5; i++) {
         let letter = arrayOfCurrentGuess[i]
         let letterPosition = arrayOfCorrectAnswer.indexOf(arrayOfCurrentGuess[i])
@@ -53,7 +68,9 @@ enterKey.addEventListener('click', function() {
             tile[i].style.backgroundColor = 'green'
         } else {
             tile[i].style.backgroundColor = 'yellow'
+            ///However, if the user put two of the same letters such as 'A'and 'A', 
+            ///the tile of the second 'A' turns yellow anyway 
+            ///eventhough there is only one 'A' in the correct answer
         }
-
     }
 })
