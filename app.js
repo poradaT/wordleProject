@@ -45,16 +45,16 @@ enterKey.addEventListener('click', function() {
 
     if (currentGuess === correctAnswer) {
         alert('YOU WIN!')
-        window.history.go(-1)
+        window.history.go(1)
     } else if (arrayOfCurrentGuess.length <5) {
         alert("Not enough letters!")
-        window.history.go(-1)
+        window.history.go(1)
     } else if (!validWords.includes(currentGuess)) {
         alert(`C'mon, that's not a word`)
-        window.history.go(-1)
+        window.history.go(1)
     } else {
         alert(`Try again! The correct answer is ${correctAnswer}`)
-        window.history.go(-1)
+        window.history.go(1)
     }
   
     for (let i=0; i<5; i++) {
